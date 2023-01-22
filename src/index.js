@@ -3,6 +3,7 @@ But in index.js, which is the entry point to the application, the component need
 
 import React from 'react' // ES6 Modules - Get a piece of functionality into our files
 import ReactDom from 'react-dom'
+import './index.css'
 
 /* Stateless Functional Component - Also called Dump components because they don't have a state
 Always need to return something 
@@ -15,13 +16,44 @@ JSX - Javascript XML. There are a few JSX rules:
 6. Formatting - 
 */
 
-function Greeting(){ // Capitalize the first letter of the function name - so that React knows it's a component
+/* Nesting Components */ 
+
+function BookList(){ // Capitalize the first letter of the function name - so that React knows it's a component
+  const booksList = [{"id":3, "title" : "A Life in the Shadows : A Memoir", "imageURL" : "https://images-eu.ssl-images-amazon.com/images/I/41iUdP0aG3L._AC_SX184_.jpg", "author" : "A.S. Dulat 1"},
+  {"id":1, "title" : "A Life in the Shadows : A Memoir", "imageURL" : "https://images-eu.ssl-images-amazon.com/images/I/41iUdP0aG3L._AC_SX184_.jpg", "author" : "A.S. Dulat 2"},
+  {"id":2, "title" : "A Life in the Shadows : A Memoir 2", "imageURL" : "https://images-eu.ssl-images-amazon.com/images/I/41iUdP0aG3L._AC_SX184_.jpg", "author" : "A.S. Dulat 3"}]
+  // const names = ["Durga", "Chowdary", "Edara"]
+  // const newNames = names.map((name) => {return <h2>{name}</h2>})
   return(
     <React.Fragment>
-      <h4>Hello World! This is JSX.</h4>
-      <img alt="Alternative"></img>
+      <section className='booklist'>
+      {booksList.map((book) => {
+        return <Book key={book.id} {...book}> hi {book.id}</Book>
+      })}
+      </section>
     </React.Fragment>
   )
+}
+
+const Book = (book) => {
+  // Attribute and event handler are required for handling events.
+  // onClick={handleEvent} - Will not invoke the function on load, but {handleEvent()} will invoke the function on load
+  // Passign an argument as an event handler - () => {handleEvent(author)}
+  const handleEvent = (e) => {
+    console.log(e)
+  }
+  const {id, title, imageURL, author, children} = book
+  return(
+    <article>
+          <li key={id}>
+            <h1>{title}</h1>
+            {children}
+            <img src={imageURL} alt="Alternative" />
+            <h3 style={{color:'blue'} }>{author}</h3>
+            <button onClick={() => handleEvent(author)}>Click Me</button>
+          </li>
+
+  </article>)
 }
 
 // const SecondGreeting = () => {
@@ -32,4 +64,4 @@ function Greeting(){ // Capitalize the first letter of the function name - so th
 // }
 
 // React closing tags for the component is required
-ReactDom.render(<Greeting />, document.getElementById("root"))
+ReactDom.render(<BookList />, document.getElementById("root"))
