@@ -9,7 +9,7 @@ pipeline {
 		stage ('Build') {
 			stages {
 				stage ('Build Dev') {
-					when{ branch 'main' }
+					when{ branch 'master' }
 					steps {
                         echo "Building branch - main"
 						sh '''#!/bin/env bash
