@@ -9,8 +9,9 @@ pipeline {
 		stage ('Build') {
 			stages {
 				stage ('Build Dev') {
-					when{ branch 'develop' }
+					when{ branch 'main' }
 					steps {
+                        echo "Building branch - main"
 						sh '''#!/bin/env bash
 							git checkout develop
 							git pull origin develop
