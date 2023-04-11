@@ -2,11 +2,6 @@ pipeline {
 	// Execute the Pipeline, or stage, on any available agent
 	agent any
 
-	// specifies a sequence of key-value pairs which will be defined as environment variables for all steps
-	environment {
-
-	}
-
 	stages {
 
 		// In this stage, the code is being built/compiled, and the Docker image is being created and tagged.
