@@ -9,15 +9,9 @@ pipeline {
 		stage ('Build') {
 			stages {
 				stage ('Build Dev') {
-					when{ branch 'master' }
+					when{ not {branch 'main'} }
 					steps {
-                        echo "Building branch - main"
-						sh '''#!/bin/env bash
-							git checkout develop
-							git pull origin develop
-							make tag-build
-							make build pub-image
-						'''
+                        echo "Building branch another branch"
 					}
 				}
 			}
