@@ -33,7 +33,7 @@ pipeline {
 				stage ('Deploy Sandbox') {
 					when{ branch 'develop' }
 					steps {
-						sh '''#!/bin/env bash
+						sh '''#!/usr/bin/env bash
 							DEPLOY_NS=${SB1_DEPLOY_NS} \
 							DEPLOY_AZ=${SANDBOX_DEPLOY_AZ} \
 							LIFECYCLE=${SANDBOX_LIFECYCLE} \
