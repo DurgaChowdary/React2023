@@ -21,7 +21,14 @@ pipeline {
                         branch 'master'
                     }} }
 					steps {
-                        echo "Building another branch"
+                       echo "In Feature when condition"
+						echo 'Pulling...' + env.BRANCH_NAME + BRANCH_NAME
+						sh '''#!/bin/env bash
+							git checkout ''' + BRANCH_NAME + 
+							'''git pull origin ''' + BRANCH_NAME + 
+							'''make tag-build
+							make build pub-image
+						'''
 					}
 				}
 			}
