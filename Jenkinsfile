@@ -34,7 +34,7 @@ pipeline {
 					when{ branch 'develop' }
 					steps {
 						sh '''
-							GIT_BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+							GIT_BRANCH=$(git symbolic-ref -q --short HEAD || git rev-parse HEAD)
 							echo 'Git Branch' + ${GIT_BRANCH} + ${GIT_BRANCH_NAME}
 						'''
 					}
