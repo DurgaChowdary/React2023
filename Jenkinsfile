@@ -23,7 +23,8 @@ pipeline {
 					steps {
                        echo "In Feature when condition"
 						echo 'Pulling...' + env.BRANCH_NAME + BRANCH_NAME
-						sh '''#!/bin/env bash
+						sh ''' type env
+							#!/bin/env bash
 							git checkout ''' + BRANCH_NAME + 
 							'''git pull origin ''' + BRANCH_NAME + 
 							'''make tag-build
