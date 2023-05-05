@@ -7,7 +7,6 @@ pipeline {
 		SANDBOX_DEPLOY_AZ = "np-alln"
 		SB1_DEPLOY_NS =  "rts-devint-alln" 
 		DEV_DEPLOY_USER = "itsmc-ci.gen"
-		DEPLOY_PWD_MASK = credentials('DEPLOY_PWD')
 	}
 
 	stages {
@@ -37,7 +36,6 @@ pipeline {
 							DEPLOY_AZ=${SANDBOX_DEPLOY_AZ} \
 							LIFECYCLE=${SANDBOX_LIFECYCLE} \
 							DEPLOY_USER=${DEV_DEPLOY_USER} \
-							DEPLOY_PWD=${DEPLOY_PWD_MASK} \
 							make deploy
 						'''
 					}
