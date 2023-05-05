@@ -35,7 +35,7 @@ pipeline {
 					steps {
 						sh '''
 							GIT_BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-							echo 'Git Branch' + ${GIT_BRANCH} + ${env.GIT_BRANCH_NAME}
+							echo 'Git Branch' + ${GIT_BRANCH} + ${GIT_BRANCH_NAME}
 						'''
 					}
 				}
