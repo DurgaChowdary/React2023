@@ -33,12 +33,9 @@ pipeline {
 				stage ('Deploy Sandbox') {
 					when{ branch 'develop' }
 					steps {
-						sh '''#!/usr/bin/env bash
-							DEPLOY_NS=${SB1_DEPLOY_NS} \
-							DEPLOY_AZ=${SANDBOX_DEPLOY_AZ} \
-							LIFECYCLE=${SANDBOX_LIFECYCLE} \
-							DEPLOY_USER=${DEV_DEPLOY_USER} \
-							make deploy
+						sh '''
+							GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+							echo 'Git Branch' + ${GIT_BRANCH} + ${env.GIT_BRANCH_NAME}
 						'''
 					}
 				}
