@@ -39,7 +39,7 @@ pipeline {
 							else
 								switchname=$(git rev-parse HEAD) || exit  # quit if unborn branch
 								detach="--detach"
-							fi)
+							fi
 							echo 'Git Branch' + ${GIT_BRANCH} + ${detach}
 						'''
 					}
