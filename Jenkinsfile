@@ -9,6 +9,7 @@ pipeline {
 		DEV_DEPLOY_USER = "itsmc-ci.gen"
 		DEPLOY_PWD_MASK = credentials('DEPLOY_PWD')
 	}
+
 	stages {
 
 		// In this stage, the code is being built/compiled, and the Docker image is being created and tagged.
@@ -16,7 +17,7 @@ pipeline {
 		stage ('Build') {
 			stages {
 				stage ('Build Dev') {
-					when{ not { anyof {
+					when{ not { anyOf {
                         branch 'main'
                         branch 'master'
                     }} }
@@ -29,7 +30,7 @@ pipeline {
 		stage('Deploy') {
 			stages {
 				stage ('Deploy Sandbox') {
-					when{ branch 'feature/*' }
+					when{ branch 'develop' }
 					steps {
 						sh '''#!/bin/env bash
 							DEPLOY_NS=${SB1_DEPLOY_NS} \
