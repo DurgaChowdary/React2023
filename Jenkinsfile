@@ -34,8 +34,13 @@ pipeline {
 					when{ branch 'develop' }
 					steps {
 						sh '''
-							GIT_BRANCH=$(git symbolic-ref -q --short HEAD || git rev-parse HEAD)
-							echo 'Git Branch' + ${GIT_BRANCH} + ${GIT_BRANCH_NAME}
+							if switchname=$(git symbolic-ref -q --short HEAD); then
+								detach=
+							else
+								switchname=$(git rev-parse HEAD) || exit  # quit if unborn branch
+								detach="--detach"
+							fi)
+							echo 'Git Branch' + ${GIT_BRANCH} + ${detach}
 						'''
 					}
 				}
